@@ -1,0 +1,81 @@
+<div class="jumbotron text-center">
+  <h1 class="display-4">Our Game List!</h1>
+  <hr class="my-4">
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="error">{{ error }}</div>
+  <div *ngIf="!loading && !error">
+    <div class="container mt-4">
+      <p>
+        <a class="custom-anchor" href="#" (click)="toggleSection('section1');$event.preventDefault()">
+          Search By Title
+        </a>
+        <a class="custom-anchor m-3" href="#" (click)="toggleSection('section2');$event.preventDefault()">
+          Search By Platform
+        </a>
+        <a class="custom-anchor m-3" href="#" (click)="toggleSection('section3');$event.preventDefault()">
+          Search By Genre
+        </a>
+      </p>      
+      <div class="row">
+        <div class="col">
+          <div class="collapse multi-collapse" [ngClass]="{'show': openSectionId === 'section1'}">
+            <div class="card card-body">
+              <input class="form-control mr-sm-2" (input)="onSearchByTitle($event)" type="search" placeholder="Search" aria-label="Search">
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="collapse multi-collapse" [ngClass]="{'show': openSectionId === 'section2'}">
+            <div class="card card-body">
+              <select class="form-select" aria-label="Platform select" (change)="onSearchByPlatform($event)">
+                <option selected>All</option>
+                <option *ngFor="let platform of platformtypes">{{platform}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="collapse multi-collapse" [ngClass]="{'show': openSectionId === 'section3'}">
+            <div class="card card-body">
+              <select class="form-select" aria-label="Genre select" (change)="onSearchByGenre($event)">
+                <option selected value="">All</option>
+                <option *ngFor="let genre of genreTypes">{{genre}}</option>
+              </select>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">      
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12 d-flex p-2" *ngFor="let game of paginatedItems">
+          <div class="card flex-fill">
+            <img class="card-img-top" src="{{game.thumbnail}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{ game.title }}</h5>
+              <p class="card-text flex-grow-1">{{ game.short_description }}</p>
+              <a [routerLink]="['/details', game.id]" class="btn btn-primary">Show Detail</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Pagination controls -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination d-flex justify-content-center">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" (click)="setPage(currentPage - 1);$event.preventDefault()" href="#">Previous</a>
+          </li>
+          <li class="page-item" *ngFor="let button of paginationButtons">
+            <a class="page-link" *ngIf="button !== '...'" (click)="setPage(button);$event.preventDefault()" href="#">
+              {{ button }}
+            </a>
+            <span class="page-link" *ngIf="button === '...'">...</span>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <a class="page-link" (click)="setPage(currentPage + 1);$event.preventDefault()" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

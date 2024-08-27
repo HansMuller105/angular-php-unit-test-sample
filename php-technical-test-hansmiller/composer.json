@@ -1,0 +1,17 @@
+{
+    "name": "administrator/php-technical-test-hansmiller",
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Administrator\\PhpTechnicalTestHansmiller\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hans Muller",
+            "email": "hansmiller105@gmail.com"
+        }
+    ]
+}

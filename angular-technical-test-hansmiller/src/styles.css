@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+.card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-text {
+    flex-grow: 1; /* Allows the card text to grow and fill the space */
+  }
+  
+  .btn {
+    margin-top: auto; /* Pushes the button to the bottom of the card body */
+  }
+  
+  .custom-anchor {
+    font-size: 18px;
+    padding: 10px 20px;
+    text-decoration: none;
+  }

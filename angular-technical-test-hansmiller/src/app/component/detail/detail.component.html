@@ -1,0 +1,21 @@
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error">{{ error }}</div>
+<div *ngIf="!loading && !error" class="jumbotron"> 
+    <div class="text-center">
+        <h1 class="display-4">Details</h1>
+    </div>    
+    <hr class="my-4">
+    <div class="media row">
+        <img class="align-self-start col-md-4" src="{{game.thumbnail}}" alt="Generic placeholder image">
+        <div class="media-body col-md-8">
+            <h5 class="mt-0">{{game.title}}</h5>
+            <p>{{game.description}}</p>
+            <p>Status: {{game.status}}</p>
+            <p>Genre: {{game.genre}}</p>
+            <p><a href="{{game.freetogame_profile_url}}">Visit game</a></p>
+            <p>
+                <a [routerLink]="['/home']" class="btn btn-primary">Return</a>
+            </p>
+        </div>
+    </div>
+</div>
